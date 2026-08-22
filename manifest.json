@@ -1,0 +1,75 @@
+{
+  "name": "Maison Dropship E-learning",
+  "short_name": "Maison Dropship",
+  "description": "Plateforme e-commerce de formations en dropshipping",
+  "start_url": "/ecommerce.html",
+  "display": "standalone",
+  "background_color": "#0a0a0b",
+  "theme_color": "#c6a15b",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%230a0a0b' width='192' height='192'/><circle cx='96' cy='96' r='80' fill='%23c6a15b'/><text x='96' y='110' font-size='60' font-weight='bold' fill='%230a0a0b' text-anchor='middle' font-family='serif'>MD</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='%230a0a0b' width='512' height='512'/><circle cx='256' cy='256' r='200' fill='%23c6a15b'/><text x='256' y='290' font-size='150' font-weight='bold' fill='%230a0a0b' text-anchor='middle' font-family='serif'>MD</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><rect fill='%230a0a0b' width='540' height='720'/><rect fill='%23c6a15b' y='0' width='540' height='140'/><text x='270' y='80' font-size='40' font-weight='bold' fill='%230a0a0b' text-anchor='middle' font-family='serif'>Formations</text><rect fill='%23121214' y='140' width='540' height='200' x='20' y='180' width='500' height='180' rx='8'/><text x='270' y='300' font-size='20' fill='%23f2ede2' text-anchor='middle'>Formations Disponibles</text></svg>",
+      "sizes": "540x720",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    }
+  ],
+  "categories": [
+    "education",
+    "business"
+  ],
+  "shortcuts": [
+    {
+      "name": "Catalogue",
+      "short_name": "Catalogue",
+      "description": "Voir les formations disponibles",
+      "url": "/ecommerce.html#home",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23c6a15b' width='192' height='192'/><text x='96' y='110' font-size='80' text-anchor='middle' font-family='sans-serif'>📚</text></svg>",
+          "sizes": "192x192",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Mon Espace",
+      "short_name": "Espace",
+      "description": "Accédez à vos formations",
+      "url": "/ecommerce.html#dashboard",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23c6a15b' width='192' height='192'/><text x='96' y='110' font-size='80' text-anchor='middle' font-family='sans-serif'>👤</text></svg>",
+          "sizes": "192x192",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ],
+  "share_target": {
+    "action": "/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
+}
