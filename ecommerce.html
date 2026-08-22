@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maison Dropship — Plateforme E-learning</title>
+<meta name="description" content="Plateforme e-commerce de formations en dropshipping. Accès immédiat aux cours, outils et accompagnement.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --noir: #0a0a0b;
+    --noir-2: #121214;
+    --noir-3: #1a1a1d;
+    --or: #c6a15b;
+    --or-clair: #e4c98a;
+    --ivoire: #f2ede2;
+    --ivoire-dim: #a8a39a;
+    --ligne: rgba(198,161,91,0.22);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--noir);
+    color: var(--ivoire);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(198,161,91,0.08), transparent 60%),
+      radial-gradient(ellipse 700px 600px at 100% 10%, rgba(198,161,91,0.05), transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* HEADER */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(10,10,11,0.95);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--ligne);
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 32px;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    letter-spacing: 0.08em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+
+  .logo .mark {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--or);
+    box-shadow: 0 0 12px var(--or);
+  }
+
+  .nav-center {
+    display: flex;
+    gap: 40px;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ivoire-dim);
+  }
+
+  .nav-center button {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    transition: color 0.3s;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .nav-center button:hover {
+    color: var(--or-clair);
+  }
+
+  .nav-right {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .cart-icon {
+    position: relative;
+    cursor: pointer;
+    font-size: 18px;
+  }
+
+  .cart-count {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background: var(--or);
+    color: var(--noir);
+    font-size: 10px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+  }
+
+  .nav-cta {
+    border: 1px solid var(--or);
+    color: var(--or-clair);
+    padding: 10px 22px;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
+  .nav-cta:hover {
+    background: var(--or);
+    color: var(--noir);
+  }
+
+  /* MAIN CONTENT */
+  main {
+    position: relative;
+    z-index: 1;
+    margin-top: 70px;
+  }
+
+  .page {
+    display: none;
+  }
+
+  .page.active {
+    display: block;
+  }
+
+  /* CATALOGUE */
+  .catalogue {
+    padding: 80px 0;
+  }
+
+  .catalogue-head {
+    margin-bottom: 60px;
+    text-align: center;
+  }
+
+  .catalogue-head h1 {
+    font-size: clamp(36px, 5vw, 64px);
+    margin-bottom: 20px;
+    color: var(--ivoire);
+  }
+
+  .catalogue-head p {
+    font-size: 16px;
+    color: var(--ivoire-dim);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+  }
+
+  .course-card {
+    border: 1px solid var(--ligne);
+    background: linear-gradient(180deg, rgba(198,161,91,0.05), transparent 60%);
+    padding: 32px;
+    transition: all 0.35s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .course-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(198,161,91,0.1), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.35s;
+    pointer-events: none;
+  }
+
+  .course-card:hover {
+    border-color: var(--or);
+    box-shadow: 0 20px 50px rgba(198,161,91,0.15);
+  }
+
+  .course-card:hover::before {
+    opacity: 1;
+  }
+
+  .course-card-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .course-badge {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--or-clair);
+    background: rgba(198,161,91,0.1);
+    padding: 6px 12px;
+    margin-bottom: 16px;
+  }
+
+  .course-card h3 {
+    font-size: 24px;
+    color: var(--ivoire);
+    margin-bottom: 12px;
+  }
+
+  .course-card p {
+    font-size: 14px;
+    color: var(--ivoire-dim);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .course-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--ivoire-dim);
+    margin-bottom: 20px;
+    border-top: 1px solid var(--ligne);
+    padding-top: 16px;
+  }
+
+  .course-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    color: var(--or-clair);
+    margin-bottom: 16px;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--or-clair), var(--or));
+    color: var(--noir);
+    padding: 14px 28px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.35s;
+    box-shadow: 0 8px 30px -6px rgba(198,161,91,0.5);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 40px -6px rgba(198,161,91,0.65);
+  }
+
+  /* PANIER */
+  .cart-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 200;
+    backdrop-filter: blur(4px);
+  }
+
+  .cart-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cart-panel {
+    background: var(--noir-2);
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    border: 1px solid var(--ligne);
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .cart-header {
+    padding: 24px;
+    border-bottom: 1px solid var(--ligne);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cart-header h2 {
+    font-size: 20px;
+  }
+
+  .cart-close {
+    cursor: pointer;
+    font-size: 24px;
+    color: var(--ivoire-dim);
+    transition: color 0.3s;
+  }
+
+  .cart-close:hover {
+    color: var(--or-clair);
+  }
+
+  .cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px;
+  }
+
+  .cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--ligne);
+  }
+
+  .cart-item-info h4 {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  .cart-item-info p {
+    font-size: 12px;
+    color: var(--ivoire-dim);
+  }
+
+  .cart-item-remove {
+    cursor: pointer;
+    color: var(--ivoire-dim);
+    font-size: 18px;
+    transition: color 0.3s;
+  }
+
+  .cart-item-remove:hover {
+    color: var(--or-clair);
+  }
+
+  .cart-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--ivoire-dim);
+  }
+
+  .cart-footer {
+    padding: 24px;
+    border-top: 1px solid var(--ligne);
+  }
+
+  .cart-total {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+
+  .cart-total .amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    color: var(--or-clair);
+    font-weight: 600;
+  }
+
+  .btn-checkout {
+    background: linear-gradient(135deg, var(--or-clair), var(--or));
+    color: var(--noir);
+    padding: 16px;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.35s;
+    box-shadow: 0 8px 30px -6px rgba(198,161,91,0.5);
+  }
+
+  .btn-checkout:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 40px -6px rgba(198,161,91,0.65);
+  }
+
+  /* CHECKOUT */
+  .checkout {
+    padding: 80px 0;
+  }
+
+  .checkout-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .checkout-form {
+    border: 1px solid var(--ligne);
+    padding: 40px;
+    margin-bottom: 40px;
+    background: linear-gradient(180deg, rgba(198,161,91,0.05), transparent 60%);
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ivoire-dim);
+    margin-bottom: 8px;
+  }
+
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--noir-3);
+    border: 1px solid var(--ligne);
+    color: var(--ivoire);
+    font-size: 14px;
+    transition: all 0.3s;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus {
+    outline: none;
+    border-color: var(--or);
+    box-shadow: 0 0 0 3px rgba(198,161,91,0.1);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .checkout-summary {
+    border: 1px solid var(--ligne);
+    padding: 32px;
+    background: var(--noir-2);
+  }
+
+  .summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    font-size: 14px;
+  }
+
+  .summary-total {
+    border-top: 1px solid var(--ligne);
+    padding-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    margin-bottom: 24px;
+  }
+
+  .summary-total .amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    color: var(--or-clair);
+    font-weight: 600;
+  }
+
+  /* DASHBOARD */
+  .dashboard {
+    padding: 80px 0;
+  }
+
+  .dashboard-head {
+    margin-bottom: 40px;
+  }
+
+  .dashboard-head h1 {
+    font-size: 42px;
+    margin-bottom: 8px;
+  }
+
+  .dashboard-head p {
+    color: var(--ivoire-dim);
+    font-size: 14px;
+  }
+
+  .purchases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+  }
+
+  .purchase-card {
+    border: 1px solid var(--ligne);
+    padding: 24px;
+    background: var(--noir-2);
+    border-radius: 4px;
+  }
+
+  .purchase-card h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .purchase-date {
+    font-size: 12px;
+    color: var(--ivoire-dim);
+    margin-bottom: 16px;
+  }
+
+  .purchase-status {
+    display: inline-block;
+    padding: 6px 12px;
+    background: rgba(198,161,91,0.2);
+    color: var(--or-clair);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .btn-access {
+    background: rgba(198,161,91,0.15);
+    border: 1px solid var(--or);
+    color: var(--or-clair);
+    padding: 10px 20px;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+  }
+
+  .btn-access:hover {
+    background: var(--or);
+    color: var(--noir);
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--ligne);
+    padding: 60px 0 40px;
+    margin-top: 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .foot-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  footer .logo {
+    font-size: 18px;
+  }
+
+  footer .copy {
+    font-size: 12px;
+    color: var(--ivoire-dim);
+    letter-spacing: 0.04em;
+  }
+
+  /* NOTIFICATIONS */
+  .notification {
+    position: fixed;
+    top: 100px;
+    right: 32px;
+    background: var(--or);
+    color: var(--noir);
+    padding: 16px 24px;
+    border-radius: 4px;
+    font-size: 14px;
+    z-index: 300;
+    animation: slideIn 0.3s ease;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(400px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .nav-center {
+      display: none;
+    }
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+    .checkout-form {
+      padding: 24px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo" onclick="switchPage('home')">
+      <span class="mark"></span>Maison Dropship
+    </div>
+    <div class="nav-center">
+      <button onclick="switchPage('home')">Catalogue</button>
+      <button onclick="switchPage('dashboard')">Mon Espace</button>
+    </div>
+    <div class="nav-right">
+      <div class="cart-icon" onclick="toggleCart()">
+        🛒
+        <span class="cart-count" id="cartCount" style="display: none;">0</span>
+      </div>
+      <button class="nav-cta" onclick="switchPage('dashboard')">Connexion</button>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <!-- CATALOGUE -->
+  <section class="page active" id="home">
+    <div class="wrap">
+      <div class="catalogue-head">
+        <h1>Nos Formations</h1>
+        <p>Formations complètes en dropshipping, du sourcing au scaling. Accès immédiat après achat.</p>
+      </div>
+
+      <div class="courses-grid" id="coursesGrid"></div>
+    </div>
+  </section>
+
+  <!-- CHECKOUT -->
+  <section class="page" id="checkout">
+    <div class="wrap checkout">
+      <h1 style="margin-bottom: 40px; font-size: 42px;">Finaliser votre achat</h1>
+      
+      <div class="checkout-container">
+        <form class="checkout-form" onsubmit="handleCheckout(event)">
+          <h2 style="margin-bottom: 30px; font-size: 24px;">Informations client</h2>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label>Prénom *</label>
+              <input type="text" required>
+            </div>
+            <div class="form-group">
+              <label>Nom *</label>
+              <input type="text" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" required>
+          </div>
+
+          <div class="form-group">
+            <label>Téléphone</label>
+            <input type="tel">
+          </div>
+
+          <h2 style="margin-top: 30px; margin-bottom: 20px; font-size: 20px;">Paiement</h2>
+
+          <div class="form-group">
+            <label>Méthode de paiement *</label>
+            <select required>
+              <option value="">Choisir...</option>
+              <option value="card">Carte bancaire (Stripe)</option>
+              <option value="paypal">PayPal</option>
+            </select>
+          </div>
+
+          <div style="margin-top: 40px;">
+            <button type="submit" class="btn-checkout">Passer la commande</button>
+          </div>
+        </form>
+
+        <div class="checkout-summary">
+          <h3 style="margin-bottom: 20px; font-size: 18px;">Résumé de la commande</h3>
+          <div id="checkoutSummary"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section class="page" id="dashboard">
+    <div class="wrap dashboard">
+      <div class="dashboard-head">
+        <h1>Mon Espace Étudiant</h1>
+        <p>Accédez à vos formations achetées et à tous les contenus en exclusivité.</p>
+      </div>
+
+      <div id="dashboardContent"></div>
+    </div>
+  </section>
+</main>
+
+<!-- PANIER -->
+<div class="cart-modal" id="cartModal">
+  <div class="cart-panel">
+    <div class="cart-header">
+      <h2>Votre Panier</h2>
+      <span class="cart-close" onclick="toggleCart()">✕</span>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">Votre panier est vide</div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <span class="amount" id="cartTotal">0 €</span>
+      </div>
+      <button class="btn-checkout" onclick="proceedToCheckout()">Procéder au paiement</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap foot-row">
+    <div class="logo">
+      <span class="mark"></span>Maison Dropship
+    </div>
+    <div class="copy">© 2026 Maison Dropship — Plateforme e-learning en e-commerce.</div>
+  </div>
+</footer>
+
+<script>
+  // DATA
+  const courses = [
+    {
+      id: 1,
+      title: "Programme Complet Dropshipping",
+      description: "Formation complète du sourcing au scaling. 4 modules, 30+ leçons, outils exclusifs et suivi personnalisé.",
+      price: 497,
+      duration: "12 semaines",
+      modules: 4,
+      badge: "Formation complète"
+    },
+    {
+      id: 2,
+      title: "Sourcing & Fournisseurs",
+      description: "Maîtrisez la sélection de fournisseurs fiables, la négociation des tarifs et la mise en place d'une chaîne logistique.",
+      price: 197,
+      duration: "3 semaines",
+      modules: 1,
+      badge: "Module seul"
+    },
+    {
+      id: 3,
+      title: "Marketing & Acquisition",
+      description: "Stratégies d'acquisition, mise en place de campagnes publicitaires, optimisation du ROI et passage à l'échelle.",
+      price: 297,
+      duration: "4 semaines",
+      modules: 2,
+      badge: "Module seul"
+    },
+    {
+      id: 4,
+      title: "Construction Boutique e-commerce",
+      description: "Design, structure, tunnel d'achat et optimisation de conversion. Tous les secrets d'une boutique qui vend.",
+      price: 147,
+      duration: "2 semaines",
+      modules: 1,
+      badge: "Module seul"
+    }
+  ];
+
+  // STATE
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  let purchases = JSON.parse(localStorage.getItem('purchases')) || [];
+  let currentPage = 'home';
+
+  // FUNCTIONS
+  function initApp() {
+    renderCourses();
+    updateCartUI();
+    renderDashboard();
+  }
+
+  function renderCourses() {
+    const grid = document.getElementById('coursesGrid');
+    grid.innerHTML = courses.map(course => `
+      <div class="course-card">
+        <div class="course-card-content">
+          <div class="course-badge">${course.badge}</div>
+          <h3>${course.title}</h3>
+          <p>${course.description}</p>
+          <div class="course-meta">
+            <span>${course.modules} module(s)</span>
+            <span>${course.duration}</span>
+          </div>
+          <div class="course-price">${course.price} €</div>
+          <button class="btn-primary" onclick="addToCart(${course.id})">Ajouter au panier</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function addToCart(courseId) {
+    const course = courses.find(c => c.id === courseId);
+    cart.push(course);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartUI();
+    showNotification(`${course.title} ajouté au panier!`);
+  }
+
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartUI();
+  }
+
+  function updateCartUI() {
+    const count = document.getElementById('cartCount');
+    const cartItems = document.getElementById('cartItems');
+    const cartTotal = document.getElementById('cartTotal');
+
+    if (cart.length === 0) {
+      count.style.display = 'none';
+      cartItems.innerHTML = '<div class="cart-empty">Votre panier est vide</div>';
+      cartTotal.textContent = '0 €';
+      return;
+    }
+
+    count.textContent = cart.length;
+    count.style.display = 'flex';
+
+    cartItems.innerHTML = cart.map((item, index) => `
+      <div class="cart-item">
+        <div class="cart-item-info">
+          <h4>${item.title}</h4>
+          <p>${item.price} €</p>
+        </div>
+        <span class="cart-item-remove" onclick="removeFromCart(${index})">✕</span>
+      </div>
+    `).join('');
+
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
+    cartTotal.textContent = total + ' €';
+    updateCheckoutSummary();
+  }
+
+  function updateCheckoutSummary() {
+    const summary = document.getElementById('checkoutSummary');
+    if (cart.length === 0) {
+      summary.innerHTML = '<p style="color: var(--ivoire-dim);">Aucun article dans votre panier</p>';
+      return;
+    }
+
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
+    summary.innerHTML = `
+      ${cart.map(item => `
+        <div class="summary-item">
+          <span>${item.title}</span>
+          <span>${item.price} €</span>
+        </div>
+      `).join('')}
+      <div class="summary-total">
+        <span>Total TTC:</span>
+        <span class="amount">${total} €</span>
+      </div>
+    `;
+  }
+
+  function toggleCart() {
+    document.getElementById('cartModal').classList.toggle('active');
+  }
+
+  function proceedToCheckout() {
+    if (cart.length === 0) {
+      alert('Votre panier est vide');
+      return;
+    }
+    toggleCart();
+    switchPage('checkout');
+  }
+
+  function handleCheckout(e) {
+    e.preventDefault();
+    
+    if (cart.length === 0) {
+      alert('Votre panier est vide');
+      return;
+    }
+
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
+    const purchase = {
+      id: Date.now(),
+      courses: [...cart],
+      total: total,
+      date: new Date().toLocaleDateString('fr-FR'),
+      status: 'Accès immédiat'
+    };
+
+    purchases.push(purchase);
+    localStorage.setItem('purchases', JSON.stringify(purchases));
+    
+    cart = [];
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartUI();
+
+    showNotification('Commande confirmée! Accédez à vos formations dans Mon Espace.');
+    setTimeout(() => switchPage('dashboard'), 1500);
+  }
+
+  function renderDashboard() {
+    const content = document.getElementById('dashboardContent');
+    
+    if (purchases.length === 0) {
+      content.innerHTML = `
+        <div style="text-align: center; padding: 60px 0;">
+          <p style="color: var(--ivoire-dim); margin-bottom: 30px; font-size: 16px;">Vous n'avez pas encore acheté de formation.</p>
+          <button class="btn-primary" style="width: 200px; padding: 14px 28px;" onclick="switchPage('home')">Voir les formations</button>
+        </div>
+      `;
+      return;
+    }
+
+    let html = '<div class="purchases-grid">';
+    purchases.forEach(purchase => {
+      purchase.courses.forEach(course => {
+        html += `
+          <div class="purchase-card">
+            <h3>${course.title}</h3>
+            <div class="purchase-date">Acheté le ${purchase.date}</div>
+            <div class="purchase-status">${purchase.status}</div>
+            <button class="btn-access" onclick="accessCourse(${course.id})">Accéder à la formation →</button>
+          </div>
+        `;
+      });
+    });
+    html += '</div>';
+    content.innerHTML = html;
+  }
+
+  function accessCourse(courseId) {
+    const course = courses.find(c => c.id === courseId);
+    showNotification(`Accès à "${course.title}" en cours de chargement...`);
+    // Integration point for LMS/content platform
+  }
+
+  function switchPage(page) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(page).classList.add('active');
+    currentPage = page;
+    window.scrollTo(0, 0);
+  }
+
+  function showNotification(message) {
+    const notif = document.createElement('div');
+    notif.className = 'notification';
+    notif.textContent = message;
+    document.body.appendChild(notif);
+    setTimeout(() => notif.remove(), 3000);
+  }
+
+  // INIT
+  window.addEventListener('DOMContentLoaded', initApp);
+</script>
+
+</body>
+</html>
